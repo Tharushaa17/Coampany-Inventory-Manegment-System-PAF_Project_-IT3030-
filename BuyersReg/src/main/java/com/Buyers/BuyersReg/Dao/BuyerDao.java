@@ -16,7 +16,6 @@ import com.Buyers.BuyersReg.model.Buyer;
 /**
  * This DAO class provides CRUD database operations for the table buyerreg
  * in the buyer database.
- *
  */
 public class BuyerDao {
     private String jdbcURL;
