@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  * ControllerServlet.java
  * This servlet acts as a page controller for the application, handling all
  * requests from the user.
- * @author www.codejava.net
  */
 public class BuyerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private BuyerDao BuyerDao;
  
+    //initialize detabse info
     public void init() {
         String jdbcURL = getServletContext().getInitParameter("jdbc:mysql://localhost:3306/buyers");
         String jdbcUsername = getServletContext().getInitParameter("root");

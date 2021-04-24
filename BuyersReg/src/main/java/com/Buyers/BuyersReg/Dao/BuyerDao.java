@@ -14,10 +14,8 @@ import com.Buyers.BuyersReg.model.Buyer;
 
 
 /**
- * AbstractDAO.java
- * This DAO class provides CRUD database operations for the table book
- * in the database.
- * @author www.codejava.net
+ * This DAO class provides CRUD database operations for the table buyerreg
+ * in the buyer database.
  *
  */
 public class BuyerDao {
@@ -48,7 +46,7 @@ public class BuyerDao {
             jdbcConnection.close();
         }
     }
-     
+     //insert buyer
     public boolean insertBuyer(Buyer buyer) throws SQLException {
         String sql = "INSERT INTO buyerreg (FristName, LastName, MobileNu, Username, Email, Address, Password) VALUES (?, ?, ?, ?, ?, ?)";
         connect();
@@ -67,7 +65,7 @@ public class BuyerDao {
         disconnect();
         return rowInserted;
     }
-     
+     //listing buyer info
     public List<Buyer> listAllBuyer() throws SQLException {
         List<Buyer> listBuyer = new ArrayList<>();
          
@@ -98,7 +96,7 @@ public class BuyerDao {
          
         return listBuyer;
     }
-     
+     //delete buyer
     public boolean deleteBuyer(Buyer buyer) throws SQLException {
         String sql = "DELETE FROM buyerreg where id = ?";
          
@@ -112,7 +110,7 @@ public class BuyerDao {
         disconnect();
         return rowDeleted;     
     }
-     
+     //update buyer
     public boolean updateBuyer(Buyer buyer) throws SQLException {
         String sql = "UPDATE buyerreg SET FristName = ?, LatName = ?, Username = ?,MobileNu = ?, Email = ?, Address = ?, Password = ?";
         sql += " WHERE id = ?";

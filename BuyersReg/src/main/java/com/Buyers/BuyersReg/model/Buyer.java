@@ -3,10 +3,8 @@ package com.Buyers.BuyersReg.model;
 
 
 /**
- * Book.java
- * This is a model class represents a book entity
- * @author www.codejava.net
- *
+ * buyer.java
+ * This is a model class represents a buyer entity
  */
 public class Buyer{
     protected int id;
