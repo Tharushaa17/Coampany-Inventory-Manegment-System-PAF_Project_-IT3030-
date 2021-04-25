@@ -7,13 +7,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Inventory {
-	// A common method to connect to the DB /---------------
+	// A common method to connect to the DB /------------------------------------------------------------------------------------
 	private Connection connect() {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			// Provide the correct details: DBServer/DBName, username, password
 			con = DriverManager.getConnection("jdbc:mysql://localhost/inventorymanagement", "root", "");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -21,7 +20,7 @@ public class Inventory {
 		return con;
 	}
 
-	// Insert Method /------------------
+	// Insert Method /---------------------------------------------------------------------------------------------------------
 
 	public String insertItem(String name, String type, String desc, String quantity) {
 		String output = "";
@@ -54,7 +53,7 @@ public class Inventory {
 		return output;
 	}
 
-	// Read Method /-----------
+	// Read Method /-----------------------------------------------------------------------------------------------------------
 
 	public String readItems() {
 		String output = "";
@@ -83,16 +82,8 @@ public class Inventory {
 				output += "<tr><td>" + name + "</td>";
 				output += "<td>" + type + "</td>";
 				output += "<td>" + desc + "</td>";
-				output += "<td>" + quantity + "</td>";
+				output += "<td>" + quantity + "</td>"+"<th>Update</th><th>Remove</th></tr>";;
 
-				// buttons
-				// output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\"
-				// class=\"btn btn-secondary\"></td>"
-				// + "<td><form method=\"post\" action=\"items.jsp\">"
-				// + "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn
-				// btn-danger\">"
-				// + "<input name=\"itemID\" type=\"hidden\" value=\"" + stockId + "\">" +
-				// "</form></td></tr>";
 			}
 			con.close();
 			// Complete the html table
@@ -104,7 +95,7 @@ public class Inventory {
 		return output;
 	}
 
-	// Update Method /--------------------
+	// Update Method /------------------------------------------------------------------------------------------------------------
 	public String updateItem( String ID, String name, String type, String desc, String quantity) {
 		String output = "";
 		try {
@@ -135,7 +126,7 @@ public class Inventory {
 		return output;
 	}
 
-	// Delete Method /--------------------------
+	// Delete Method /-------------------------------------------------------------------------------------------------------------
 
 	public String deleteItem(String stockId) {
 		String output = "";
@@ -165,4 +156,4 @@ public class Inventory {
 		return output;
 	}
 
-} // Main End /---------
+} // Main End /-------------------------------------------------------------------------------------------------------------------

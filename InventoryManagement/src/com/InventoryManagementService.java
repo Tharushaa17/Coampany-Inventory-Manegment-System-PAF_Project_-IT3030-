@@ -25,7 +25,7 @@ public class InventoryManagementService {
 		return itemObj.readItems();
 	}
 
-	// insert
+	// insert Method /-------------------------------------------------------------------------------
 
 	@POST
 	@Path("/")
@@ -37,7 +37,7 @@ public class InventoryManagementService {
 		return output;
 	}
 
-	// update
+	// Update /------------------------------------------------------------------------------------
 
 	@PUT
 	@Path("/")
@@ -56,7 +56,7 @@ public class InventoryManagementService {
 		return output;
 	}
 
-	// Delete
+	// Delete /-------------------------------------------------------------------------------------
 
 	@DELETE
 	@Path("/")
