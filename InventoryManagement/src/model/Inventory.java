@@ -10,6 +10,7 @@ public class Inventory {
 	// A common method to connect to the DB /------------------------------------------------------------------------------------
 	private Connection connect() {
 		Connection con = null;
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -24,11 +25,13 @@ public class Inventory {
 
 	public String insertItem(String name, String type, String desc, String quantity) {
 		String output = "";
+		
 		try {
 			Connection con = connect();
 			if (con == null) {
-				return "Error while connecting to the database for inserting.";
+				{return "Error while connecting to the database for inserting.";}
 			}
+			
 			// create a prepared statement
 			String query = " insert into items (`stockId`,`name`,`type`,`desc`,`quantity`)" + " values (?, ?, ?, ?, ?)";
 
@@ -55,12 +58,14 @@ public class Inventory {
 
 	// Read Method /-----------------------------------------------------------------------------------------------------------
 
-	public String readItems() {
+	public String readItems() 
+	{
 		String output = "";
+		
 		try {
 			Connection con = connect();
 			if (con == null) {
-				return "Error while connecting to the database for reading.";
+				{return "Error while connecting to the database for reading.";}
 			}
 
 			// Prepare the html table to be displayed
@@ -84,6 +89,8 @@ public class Inventory {
 				output += "<td>" + desc + "</td>";
 				output += "<td>" + quantity + "</td>"+"<th>Update</th><th>Remove</th></tr>";;
 
+				// buttons
+				//output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"+ "<td><form method='post' action='items.jsp'>"+ "<input name='btnRemove' type='submit' value='Remove'  class='btn btn-danger'>"+ "<input name='itemID' type='hidden' value='" + stockId+ "'>" + "</form></td></tr>"; 
 			}
 			con.close();
 			// Complete the html table
@@ -101,7 +108,7 @@ public class Inventory {
 		try {
 			Connection con = connect();
 			if (con == null) {
-				return "Error while connecting to the database for updating.";
+				{return "Error while connecting to the database for updating.";}
 			}
 
 			// create a prepared statement
