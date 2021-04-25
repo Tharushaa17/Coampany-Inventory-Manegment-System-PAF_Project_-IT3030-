@@ -7,25 +7,28 @@ public class User {
 	protected String email;
 	protected String gender;
 	protected String country;
+	protected String product;
 	
 	public User() {
 	}
 	
-	public User(String name, String email, String gender, String country) {
+	public User(String name, String email, String gender, String country, String product) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.gender = gender;
 		this.country = country;
+		this.product = product;
 	}
 
-	public User(int id, String name, String email, String gender, String country) {
+	public User(int id, String name, String email, String gender, String country, String product) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.gender = gender;
 		this.country = country;
+		this.product = product;
 	}
 
 	public int getId() {
@@ -57,5 +60,11 @@ public class User {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getProduct() {
+		return product;
+	}
+	public void setProduct(String product) {
+		this.product = product;
 	}
 }

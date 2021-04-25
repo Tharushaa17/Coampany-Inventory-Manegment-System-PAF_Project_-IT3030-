@@ -75,6 +75,12 @@
 						name="country" required="required">
 				</fieldset>
 				
+				<fieldset class="form-group">
+					<label>Product Name</label> <input type="text"
+						value="<c:out value='${user.product}' />" class="form-control"
+						name="product" required="required">
+				</fieldset>
+				
 
 				<button type="submit" class="btn btn-success">Save</button>
 				<button type="reset" class="btn btn-success">Clear</button>

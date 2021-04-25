@@ -51,6 +51,7 @@
 						<th>gender</th>
 						<th>Email</th>
 						<th>Country</th>
+						<th>Product</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -64,6 +65,7 @@
 							<td><c:out value="${user.gender}" /></td>
 							<td><c:out value="${user.email}" /></td>
 							<td><c:out value="${user.country}" /></td>
+							<td><c:out value="${user.product}" /></td>
 							<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a
 								href="delete?id=<c:out value='${user.id}' />">Delete</a></td>

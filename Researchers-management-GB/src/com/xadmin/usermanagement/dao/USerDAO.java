@@ -17,13 +17,13 @@ public class USerDAO {
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "";
 
-	private static final String INSERT_reserchers_SQL = "INSERT INTO reserchers" + "  (name, email, gender, country) VALUES "
-			+ " (?, ?, ?, ?);";
+	private static final String INSERT_reserchers_SQL = "INSERT INTO reserchers" + "  (name, email, gender, country, product) VALUES "
+			+ " (?, ?, ?, ?, ?);";
 
-	private static final String SELECT_USER_BY_ID = "select id,name,email,gender,country from reserchers where id =?";
+	private static final String SELECT_USER_BY_ID = "select id,name,email,gender,country, product from reserchers where id =?";
 	private static final String SELECT_ALL_reserchers = "select * from reserchers";
 	private static final String DELETE_reserchers_SQL = "delete from reserchers where id = ?;";
-	private static final String UPDATE_reserchers_SQL = "update reserchers set name = ?,email= ?, gender =?, country =? where id = ?;";
+	private static final String UPDATE_reserchers_SQL = "update reserchers set name = ?,email= ?, gender =?, country =?, product =? where id = ?;";
 
 	public USerDAO() {
 	}
@@ -52,6 +52,7 @@ public class USerDAO {
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getGender());
 			preparedStatement.setString(4, user.getCountry());
+			preparedStatement.setString(5, user.getProduct());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -76,7 +77,8 @@ public class USerDAO {
 				String email = rs.getString("email");
 				String gender = rs.getString("gender");
 				String country = rs.getString("country");
-				user = new User(id, name, email, gender, country);
+				String product = rs.getString("product");
+				user = new User(id, name, email, gender, country, product);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -104,7 +106,8 @@ public class USerDAO {
 				String email = rs.getString("email");
 				String gender = rs.getString("gender");
 				String country = rs.getString("country");
-				reserchers.add(new User(id, name, email, gender, country));
+				String product = rs.getString("product");
+				reserchers.add(new User(id, name, email, gender, country, product));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -131,7 +134,8 @@ public class USerDAO {
 			statement.setString(2, user.getEmail());
 			statement.setString(3, user.getGender());
 			statement.setString(4, user.getCountry());
-			statement.setInt(5, user.getId());
+			statement.setString(5, user.getProduct());
+			statement.setInt(6, user.getId());
 
 			rowUpdated = statement.executeUpdate() > 0;
 		}

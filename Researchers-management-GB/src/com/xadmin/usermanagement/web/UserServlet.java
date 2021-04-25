@@ -17,15 +17,18 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-@Path("/list")
+
+@Path("/")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private USerDAO userDAO;
 	
 	@GET
-	@Path
-	@List(MediaType.user-list.jsp)
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
 	
 	public void init() {
 		userDAO = new USerDAO();
@@ -96,7 +99,8 @@ public class UserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String gender = request.getParameter("gender");
 		String country = request.getParameter("country");
-		User newUser = new User(name, email, gender, country);
+		String product = request.getParameter("product");
+		User newUser = new User(name, email, gender, country, product);
 		userDAO.insertUser(newUser);
 		response.sendRedirect("list");
 	}
@@ -108,8 +112,9 @@ public class UserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String gender = request.getParameter("gender");
 		String country = request.getParameter("country");
+		String product = request.getParameter("product");
 
-		User book = new User(id, name, email, gender, country);
+		User book = new User(id, name, email, gender, country, product);
 		userDAO.updateUser(book);
 		response.sendRedirect("list");
 	}
