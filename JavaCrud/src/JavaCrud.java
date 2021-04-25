@@ -10,6 +10,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JavaCrud {
 
@@ -93,7 +95,11 @@ public class JavaCrud {
 		textField_1.setBounds(112, 50, 138, 22);
 		panel.add(textField_1);
 		
-		JButton btnNewButton = new JButton("Save");
+		JButton btnNewButton = new JButton("Add");//crud
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton.setBounds(22, 145, 77, 25);
 		frame.getContentPane().add(btnNewButton);
 		
