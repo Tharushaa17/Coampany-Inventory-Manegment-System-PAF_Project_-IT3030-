@@ -13,17 +13,17 @@ import com.xadmin.usermanagement.model.User;
 
 
 public class USerDAO {
-	private String jdbcURL = "jdbc:mysql://localhost/userdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private String jdbcURL = "jdbc:mysql://localhost/researchersdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "";
 
-	private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, gender, country) VALUES "
+	private static final String INSERT_reserchers_SQL = "INSERT INTO reserchers" + "  (name, email, gender, country) VALUES "
 			+ " (?, ?, ?, ?);";
 
-	private static final String SELECT_USER_BY_ID = "select id,name,email,gender,country from users where id =?";
-	private static final String SELECT_ALL_USERS = "select * from users";
-	private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-	private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, gender =?, country =? where id = ?;";
+	private static final String SELECT_USER_BY_ID = "select id,name,email,gender,country from reserchers where id =?";
+	private static final String SELECT_ALL_reserchers = "select * from reserchers";
+	private static final String DELETE_reserchers_SQL = "delete from reserchers where id = ?;";
+	private static final String UPDATE_reserchers_SQL = "update reserchers set name = ?,email= ?, gender =?, country =? where id = ?;";
 
 	public USerDAO() {
 	}
@@ -44,10 +44,10 @@ public class USerDAO {
 	}
 
 	public void insertUser(User user) throws SQLException {
-		System.out.println(INSERT_USERS_SQL);
+		System.out.println(INSERT_reserchers_SQL);
 		
 		try (Connection connection = getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_reserchers_SQL)) {
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getGender());
@@ -84,15 +84,15 @@ public class USerDAO {
 		return user;
 	}
 
-	public List<User> selectAllUsers() {
+	public List<User> selectAllreserchers() {
 
 		
-		List<User> users = new ArrayList<>();
+		List<User> reserchers = new ArrayList<>();
 	
 		try (Connection connection = getConnection();
 
 				
-			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_reserchers);) {
 			System.out.println(preparedStatement);
 			
 			ResultSet rs = preparedStatement.executeQuery();
@@ -104,18 +104,18 @@ public class USerDAO {
 				String email = rs.getString("email");
 				String gender = rs.getString("gender");
 				String country = rs.getString("country");
-				users.add(new User(id, name, email, gender, country));
+				reserchers.add(new User(id, name, email, gender, country));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
 		}
-		return users;
+		return reserchers;
 	}
 
 	public boolean deleteUser(int id) throws SQLException {
 		boolean rowDeleted;
 		try (Connection connection = getConnection();
-				PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+				PreparedStatement statement = connection.prepareStatement(DELETE_reserchers_SQL);) {
 			statement.setInt(1, id);
 			rowDeleted = statement.executeUpdate() > 0;
 		}
@@ -125,7 +125,7 @@ public class USerDAO {
 	public boolean updateUser(User user) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = getConnection();
-				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+				PreparedStatement statement = connection.prepareStatement(UPDATE_reserchers_SQL);) {
 			System.out.println("updated USer:"+statement);
 			statement.setString(1, user.getName());
 			statement.setString(2, user.getEmail());

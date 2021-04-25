@@ -13,13 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.xadmin.usermanagement.dao.USerDAO;
 import com.xadmin.usermanagement.model.User;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 
 
-
-@WebServlet("/")
+@Path("/list")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private USerDAO userDAO;
+	
+	@GET
+	@Path
+	@List(MediaType.user-list.jsp)
 	
 	public void init() {
 		userDAO = new USerDAO();
@@ -62,7 +68,7 @@ public class UserServlet extends HttpServlet {
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		List<User> listUser = userDAO.selectAllUsers();
+		List<User> listUser = userDAO.selectAllreserchers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 		dispatcher.forward(request, response);
